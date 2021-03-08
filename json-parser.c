@@ -63,7 +63,7 @@ lexer_info lexer_init(char* string) {
 #define LEXER_RETURN(tok) return (lexer_return){.token_start = NULL, .token_length = 0, .token_type = tok};
 
 lexer_return lexer_step(lexer_info* lexer) {
-	if (*(lexer->current_loc) == NULL) {
+	if (*(lexer->current_loc) == 0) {
 		LEXER_RETURN(TOK_EOF)
 	}
 
@@ -197,7 +197,7 @@ lexer_return lexer_step(lexer_info* lexer) {
 		case 'a':
 			lexer->state = LS_FALSE_FA;
 			lexer->current_loc++;
-			LEXER_RETURN(TOK_NULL);
+			LEXER_RETURN(TOK_NONE);
 		default:
 			lexer->state = LS_ERROR;
 			LEXER_RETURN(TOK_ERROR);
@@ -207,7 +207,7 @@ lexer_return lexer_step(lexer_info* lexer) {
 		case 'l':
 			lexer->state = LS_FALSE_FAL;
 			lexer->current_loc++;
-			LEXER_RETURN(TOK_NULL);
+			LEXER_RETURN(TOK_NONE);
 		default:
 			lexer->state = LS_ERROR;
 			LEXER_RETURN(TOK_ERROR);
@@ -217,7 +217,7 @@ lexer_return lexer_step(lexer_info* lexer) {
 		case 's':
 			lexer->state = LS_FALSE_FALS;
 			lexer->current_loc++;
-			LEXER_RETURN(TOK_NULL);
+			LEXER_RETURN(TOK_NONE);
 		default:
 			lexer->state = LS_ERROR;
 			LEXER_RETURN(TOK_ERROR);
